@@ -139,10 +139,10 @@ impl Seal {
         }
 
         let tag = SodiumTag::from_slice(&ciphertext[0..TAG_LENGTH])
-            .ok_or(InvalidMac::new())?;
+            .ok_or_else(InvalidMac::new)?;
         let nonce =
             SodiumNonce::from_slice(&ciphertext[TAG_LENGTH..HEADER_LENGTH])
-                .ok_or(InvalidMac::new())?;
+                .ok_or_else(InvalidMac::new)?;
 
         self.buffer.clear();
         self.buffer.extend_from_slice(&ciphertext[HEADER_LENGTH..]);

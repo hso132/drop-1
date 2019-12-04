@@ -168,7 +168,7 @@ impl Pull {
     {
         self.decrypt_ref(ciphertext)
             .map(|x: T| x.to_owned())
-            .map_err(|e| e.into())
+            .map_err(|e| e)
     }
 }
 
